@@ -1,4 +1,4 @@
-const api_key = "3d5add607b486f1397e0be91a7714510";
+const api_key = "8bb1588799b9dd481452af46ef0811be";
 
 const weatherDataEl = document.getElementById("weather-data");
 
@@ -10,13 +10,14 @@ formEl.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const cityValue = cityInputEl.value;
+  console.log(cityValue);
   getWeatherData(cityValue);
 });
 
-async function getWeatherData() {
+async function getWeatherData(cityValue) {
   try {
     const response = await fetch(
-      `http://api.openweathermap.org/geo/1.0/direct?q${cityValue}&apiid=${api_key}`
+      `http://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${api_key}&units=metric`
     );
 
     if (!response.ok) {
@@ -27,6 +28,6 @@ async function getWeatherData() {
 
     console.log(data);
   } catch (error) {
-    console.log(error);
+    
   }
 }
